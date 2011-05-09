@@ -1,6 +1,7 @@
 # Welcome to Twitter AWS
 
-Twitter AWS is a Rails application that helps you to
+## Twitter AWS is a Rails application that helps you to
+
 1. Collect tweets from the twitter garden hose for a given keyword
 2. Create a set of classification criteria i.e. Is this tweet funny? Is it about a product? and so on...
 3. Send out those tweets to Amazon Mechanical Turk and let crowdsource the questions
