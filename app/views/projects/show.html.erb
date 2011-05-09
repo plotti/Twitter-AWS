@@ -1,0 +1,66 @@
+<p>
+  <b>Name:</b>
+  <%=h @project.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @project.description %>
+</p>
+<hr>
+<h1>Twitter Keywords</h1>
+<p>
+  <b>Keyword1:</b>
+  <%=h @project.keyword1 %>
+</p>
+
+<p>
+  <b>Keyword2:</b>
+  <%=h @project.keyword2 %>
+</p>
+
+<p>
+  <b>Keyword3:</b>
+  <%=h @project.keyword3 %>
+</p>
+<hr>
+<h1>Crowdsourcing Questions</h1>
+<p>
+  <b>Question1:</b>
+  <%=h @project.question1 %>
+</p>
+
+<p>
+  <b>Question2:</b>
+  <%=h @project.question2 %>
+</p>
+
+<p>
+  <b>Question3:</b>
+  <%=h @project.question3 %>
+</p>
+<p>
+  <b>Quality Requirement:</b>
+  <%=h @project.quality_requirement %>
+</p>
+<hr>
+<h1>Stats</h1>
+<p>
+  <b>Tweets Collected</b>
+  <%=h @project.tweets.count %>
+</p>
+<p>
+  <b>Tweets in project marked for CrowdSource Review:</b>
+  <%=h @project.tweets.for_review.count %>
+</p>
+<p>
+  <b>Tweets in Amazon Mechanical Turk waiting for a Review</b>
+  <%=h link_to "Show #{@project.tweets.pending.count}", project_tweets_path(@project, :pending => true) %>
+</p>
+<p>
+  <b>Reviewed Tweets</b>
+  <%=h @project.tweets.reviewed.count %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

@@ -1,0 +1,64 @@
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Description</th>
+    <th>Keyword1</th>
+    <th>Keyword2</th>
+    <th>Keyword3</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%=h project.name %></td>
+    <td><%=h project.description %></td>
+    <td><%=h project.keyword1 %></td>
+    <td><%=h project.keyword2 %></td>
+    <td><%=h project.keyword3 %></td>
+    <td><%= link_to 'Show Tweets(' + project.tweets.count.to_s + ' collected)', project_tweets_path(project) %></td>
+    <td><%= link_to_remote "Mark 250 en-tweets for review", :url => {:controller => "projects", :action => "mark_tweets_for_review", :project_id => project}, :confirm => "Are you sure?" %></td>
+    <td><%= link_to_remote "Export tweets as csv", :url => {:controller => "projects", :action => "export_as_csv", :id => project.id} %></td>
+    <td><%= link_to 'Show Project Details', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New project', new_project_path %>
+<% if params[:admin] == nil %>
+	<%= link_to 'Admin Interface', root_path(:admin => true) %>
+<% else %>
+	<%= link_to 'Close Admin Interface', root_path %>
+<% end %>
+<% if params[:admin] %>
+<hr>
+<h1> Admin Interface </h1>
+<h3>Running Daemons </h3>
+<% Dir[RAILS_ROOT + "/*.pid"].each do |entry| %>
+	<%= File.basename(entry.to_s) %><br>
+<% end %>
+
+<h3>Daemon Control</h3>
+<p>
+	<%= link_to_remote "Start Twitter Stream Deamon", :url => {:controller => "projects", :action => "start_twitter_daemon"}, :confirm => "Are you sure?" %><br>
+	<%= link_to_remote "Stop Twitter Stream Daemon", :url => {:controller => "projects", :action => "stop_twitter_daemon"}, :confirm => "Are you sure?" %><br>
+	<%= link_to_remote "Start Mturk Daemon", :url => {:controller => "projects", :action => "start_mturk_daemon"},:confirm => "Are you sure?" %><br>
+	<%= link_to_remote "Stop Mturk Daemon", :url => {:controller => "projects", :action => "stop_mturk_daemon"},:confirm => "Are you sure?" %>
+</p>
+
+<h3>Amazon Mechanical Turk</h3>
+<p>
+<% @hits.each do |hit| %>
+    <%= "ID:" + hit[:hitid] + " Status:" + hit[:status] %><br/>
+<% end %>
+</p>
+<p>
+  <b>Amazon Mechanichal Turk Commands:</b><br/>
+  <%=link_to_remote "Delete All Pending HITs", :url =>{:controller => "projects", :action => "delete_all_pending_hits"} %><br/>
+  <%=link_to_remote "Delete All Reviewable HITs", :url =>{:controller => "projects", :action => "delete_all_reviewable_hits"} %>
+</p>
+<% end %>

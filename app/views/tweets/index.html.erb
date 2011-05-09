@@ -1,0 +1,53 @@
+<h1>Listing tweets for project: <%= @project.name %></h1>
+<p>
+	<%= link_to "Show all", project_tweets_path(@project) %>
+	<%= link_to "Show reviewed", project_tweets_path(@project, :reviewed => true) %>
+	<%= link_to "Show pending", project_tweets_path(@proejct, :pending => true) %>
+</p>
+<%= will_paginate @tweets %>
+
+<p>
+	<h1>Questions</h1>
+	<b>Question1:</b>
+	<%=h @project.question1 %><br/>
+	<b>Question2:</b>
+	<%=h @project.question2 %><br/>
+	<b>Question3:</b>
+	<%=h @project.question3 %><br/>
+</p>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Username</th>
+    <th>Guid</th>
+    <th>Lang</th>
+    <th>Time zone</th>
+	<th>Rewiew Status</th>
+    <th>Sentiment</th>
+    <th>Answer1</th>
+    <th>Answer2</th>
+    <th>Answer3</th>
+  </tr>
+
+<% @tweets.each do |tweet| %>
+  <tr>
+    <td><%=h truncate(tweet.text, :length => 140) %></td>
+    <td><%=h tweet.username %></td>
+    <td><%=h tweet.guid %></td>
+    <td><%=h tweet.lang %></td>
+    <td><%=h tweet.time_zone %></td>
+    <td><%=h tweet.review_status %></td>
+    <td><%=h tweet.sentiment %></td>
+    <td><%=h tweet.answer1 %></td>
+    <td><%=h tweet.answer2 %></td>
+    <td><%=h tweet.answer3 %></td>
+    <td><%= link_to 'Show', project_tweet_path(@project,tweet) %></td>
+    <td><%= link_to 'Edit', edit_project_tweet_path(@project,tweet) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate @tweets %>
+<%= link_to "Back to Projects Overview", projects_path %>

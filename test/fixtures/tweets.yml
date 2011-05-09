@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  text: MyString
+  username: MyString
+  guid: 1
+  lang: MyString
+  time_zone: MyString
+  project_id: 1
+
+two:
+  text: MyString
+  username: MyString
+  guid: 1
+  lang: MyString
+  time_zone: MyString
+  project_id: 1

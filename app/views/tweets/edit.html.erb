@@ -1,0 +1,36 @@
+<h1>Editing tweet Review</h1>
+
+<% form_for [@project,@tweet] do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <b>Text:</b>
+    <%=h @tweet.text %>
+  </p>
+  <p>
+    <b>Username:</b>
+    <%=h @tweet.username %>
+  </p>
+  <p>
+    <b>Guid:</b>
+    <%=h @tweet.guid %>
+  </p>
+  <p>
+    <b>Language:</b>
+    <%=h @tweet.lang %>
+  </p>
+  <p>
+    <b>Timezone:</b>
+    <%=h @tweet.time_zone %>
+  </p>
+  <p>
+    <%= f.label :review_status %><br />
+    <%= select :tweet, :review_status, Tweet::REVIEW_STATUS, { :include_blank => true }  %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', project_tweet_path(@project,@tweet) %> |
+<%= link_to 'Back', project_tweets_path(@project) %>

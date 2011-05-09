@@ -1,0 +1,51 @@
+<h1>Editing project</h1>
+
+<% form_for(@project) do |f| %>
+  <%= f.error_messages %>
+  <p>
+  	<%= f.label :name %><br />
+  	<%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.label :description %><br />
+  	<%= f.text_field :description %>  	        
+  </p>
+ <hr>
+ <h1>Twitter Keywords</h1>
+  <p>
+    <%= f.label :keyword1 %><br />
+    <%= f.text_field :keyword1 %>
+  </p>
+  <p>
+    <%= f.label :keyword2 %><br />
+    <%= f.text_field :keyword2 %>
+  </p>
+  <p>
+    <%= f.label :keyword3 %><br />
+    <%= f.text_field :keyword3 %>
+  </p>
+<hr>
+<h1>Crowdsourcing Questions</h1>
+  <p>
+    <%= f.label :question1 %><br />
+    <%= f.text_area :question1, :rows => 5 %>
+  </p>
+  <p>
+    <%= f.label :question2 %><br />
+    <%= f.text_area :question2, :rows => 5%>
+  </p>
+  <p>
+    <%= f.label :question3 %><br />
+    <%= f.text_area :question3, :rows => 5%>
+  </p>
+  <p>
+  	<%= f.label :quality_requirement %><br />
+  	<%= f.text_field :quality_requirement %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @project %> |
+<%= link_to 'Back', projects_path %>
